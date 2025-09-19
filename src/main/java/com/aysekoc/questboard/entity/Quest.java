@@ -1,48 +1,40 @@
 package com.aysekoc.questboard.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 
-@Table(name="quests")
+@Entity
+@Table(name = "quests")
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Quest {
 
-
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @Column(name="id", nullable=false, unique=true)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name="title")
+    @Column(nullable = false, unique = true)
     private String title;
 
-    @Column(name="description")
+    @Column(columnDefinition = "TEXT")
     private String description;
 
-   // enum String difficulty;
+    private String category;       // Örn: Coding, Fitness, Reading
+    private Integer difficulty;    // 1–5 arası zorluk
+    private Integer rewardPoints;  // Tamamlayınca verilen puan
+    private Integer maxPlayers;    // opsiyonel, yarışma benzeri görevler için
 
-    @Column(name="reward_points")
-    private int rewardPoints;
-
-    @Column(name="created_at")
     private LocalDateTime createdAt;
-
-    @Column(name="deadline")
     private LocalDateTime deadline;
 
-    @ManyToMany
-    @JoinTable(name="quest_user",
-            joinColumns = @JoinColumn(name="quest_id"),
-    inverseJoinColumns = @JoinColumn(name="user_id"))
-    private List<User> user;
+    @OneToMany(mappedBy = "quest", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<UserQuest> userQuests = new ArrayList<>();
 }

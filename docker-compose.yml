@@ -1,0 +1,22 @@
+services:
+  db-hospitalappointmentsystem:
+    image: postgres:16
+    restart: always
+    container_name: db-questboard
+    environment:
+      POSTGRES_DB: questboard
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: secret
+    volumes:
+      - another_postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - elk-network
+
+volumes:
+  another_postgres_data:
+
+networks:
+  elk-network:
+    driver: bridge
