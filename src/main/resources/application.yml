@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: questboard
+  datasource:
+    name:
+    password:
+    url:
+server:
+  port: 8080

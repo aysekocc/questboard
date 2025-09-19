@@ -1,0 +1,48 @@
+package com.aysekoc.questboard.entity;
+
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
+@Table(name="users")
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+public class User {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="id", nullable=false, unique=true)
+    private Long id;
+
+    @Column(name="username")
+    private String username;
+
+    @Column(name="email")
+    private String email;
+
+    @Column(name="password")
+    private String password;
+
+    @Column(name="level")
+    private int level;
+
+    @Column(name="points")
+    private int points;
+
+    @Column(name="createdAt")
+    private LocalDateTime createdAt;
+
+    @Column(name="updatedAt")
+    private LocalDateTime updatedAt;
+
+    @ManyToMany(mappedBy = "quests")
+    private List<Quest> quests = new ArrayList<Quest>();
+}
