@@ -1,31 +1,56 @@
 package com.aysekoc.questboard.controller;
 
-import com.aysekoc.questboard.dto.User.CreateUserDto;
+import com.aysekoc.questboard.dto.Task.request.TaskStatusRequestDto;
+import com.aysekoc.questboard.dto.User.LoginUserResponseDto;
+import com.aysekoc.questboard.dto.User.request.CreateUserRequestDto;
+import com.aysekoc.questboard.dto.User.request.LoginUserRequestDto;
+import com.aysekoc.questboard.entity.User;
 import com.aysekoc.questboard.service.abstracts.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import lombok.AllArgsConstructor;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
-@RequestMapping(path = "/api")
+@RequestMapping(path = "/api/users")
+@AllArgsConstructor
 public class UserController {
 
-    @Autowired
-    private UserService userService;
+    private final UserService userService;
+
 
     @PostMapping("/register")
-    public String register(@RequestBody (required = false) CreateUserDto createUserDto) {
-        userService.createUser(createUserDto);
+    public String register(@RequestBody (required = false) CreateUserRequestDto createUserDto) {
+        userService.register(createUserDto);
         return "User Registration Successful!";
     }
 
     @PostMapping("/login")
-    public String login(@RequestBody CreateUserDto createUserDto) {
-        CreateUserDto createUserDto1=new CreateUserDto();
-        createUserDto1.setUsername(createUserDto.getUsername());
-        createUserDto1.setPassword(createUserDto.getPassword());
+    public String login(@RequestBody LoginUserRequestDto loginUserDto) {
+        userService.login(loginUserDto);
         return "User Login Successful!";
     }
+
+    @GetMapping("/{id}/quests")
+    public TaskStatusRequestDto listquests(@PathVariable Long id){
+       userService.getTaskStatusId(id);
+       return null;
+
+    }
+
+    @GetMapping("/listAll")
+    public List<User> listAll(){
+        return userService.listAll();
+    }
+
+    @GetMapping("/list/username")
+    public LoginUserResponseDto listUsername(@RequestParam LoginUserRequestDto username){
+        return null;
+    }
+
+    @DeleteMapping("/delete")
+    public void delete(@RequestParam Long id){
+        System.out.println(id + " silindi!");
+    }
+
 }

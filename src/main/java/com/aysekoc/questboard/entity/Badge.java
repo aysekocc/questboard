@@ -20,15 +20,13 @@ public class Badge {
     @Column(name="id", unique = true, nullable = false)
     private Long id;
 
-    @Column(name="name")
+    @Column(name="name", nullable = false)
     private String name;
 
-    @Column(name="description")
+    @Column(name="description", nullable = false)
     private String description;
 
-    @Column(name="minPoints")
+    @Column(name="minPoints", nullable = false)
     private int minPoints;
-
-
 
 }
