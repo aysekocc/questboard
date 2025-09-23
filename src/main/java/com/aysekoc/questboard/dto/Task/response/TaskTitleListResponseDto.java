@@ -1,4 +1,4 @@
-package com.aysekoc.questboard.dto.Task.request;
+package com.aysekoc.questboard.dto.Task.response;
 
 
 import lombok.AllArgsConstructor;
@@ -10,5 +10,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-public class TaskStatusRequestDto {
+public class TaskTitleListResponseDto {
+    private Long id;
+    private String title;
 }

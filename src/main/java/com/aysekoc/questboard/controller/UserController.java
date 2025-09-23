@@ -1,9 +1,9 @@
 package com.aysekoc.questboard.controller;
 
-import com.aysekoc.questboard.dto.Task.request.TaskStatusRequestDto;
-import com.aysekoc.questboard.dto.User.LoginUserResponseDto;
-import com.aysekoc.questboard.dto.User.request.CreateUserRequestDto;
-import com.aysekoc.questboard.dto.User.request.LoginUserRequestDto;
+import com.aysekoc.questboard.dto.Task.request.TaskCreateRequestDto;
+import com.aysekoc.questboard.dto.User.response.UserLoginResponseDto;
+import com.aysekoc.questboard.dto.User.request.UserCreateRequestDto;
+import com.aysekoc.questboard.dto.User.request.UserLoginRequestDto;
 import com.aysekoc.questboard.entity.User;
 import com.aysekoc.questboard.service.abstracts.UserService;
 import lombok.AllArgsConstructor;
@@ -20,19 +20,19 @@ public class UserController {
 
 
     @PostMapping("/register")
-    public String register(@RequestBody (required = false) CreateUserRequestDto createUserDto) {
+    public String register(@RequestBody (required = false) UserCreateRequestDto createUserDto) {
         userService.register(createUserDto);
         return "User Registration Successful!";
     }
 
     @PostMapping("/login")
-    public String login(@RequestBody LoginUserRequestDto loginUserDto) {
+    public String login(@RequestBody UserLoginRequestDto loginUserDto) {
         userService.login(loginUserDto);
         return "User Login Successful!";
     }
 
     @GetMapping("/{id}/quests")
-    public TaskStatusRequestDto listquests(@PathVariable Long id){
+    public TaskCreateRequestDto listquests(@PathVariable Long id){
        userService.getTaskStatusId(id);
        return null;
 
@@ -44,7 +44,7 @@ public class UserController {
     }
 
     @GetMapping("/list/username")
-    public LoginUserResponseDto listUsername(@RequestParam LoginUserRequestDto username){
+    public UserLoginResponseDto listUsername(@RequestParam UserLoginRequestDto username){
         return null;
     }
 

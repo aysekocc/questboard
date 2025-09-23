@@ -1,11 +1,11 @@
 package com.aysekoc.questboard.service.concretes;
 
 
-import com.aysekoc.questboard.dto.Task.response.TaskStatusResponseDto;
-import com.aysekoc.questboard.dto.User.request.CreateUserRequestDto;
-import com.aysekoc.questboard.dto.User.request.LoginUserRequestDto;
-import com.aysekoc.questboard.dto.User.LoginUserResponseDto;
-import com.aysekoc.questboard.dto.User.response.CreateUserResponseDto;
+import com.aysekoc.questboard.dto.Task.response.TaskCreateResponseDto;
+import com.aysekoc.questboard.dto.User.request.UserCreateRequestDto;
+import com.aysekoc.questboard.dto.User.request.UserLoginRequestDto;
+import com.aysekoc.questboard.dto.User.response.UserLoginResponseDto;
+import com.aysekoc.questboard.dto.User.response.UserCreateResponseDto;
 import com.aysekoc.questboard.entity.User;
 import com.aysekoc.questboard.repository.UserRepository;
 import com.aysekoc.questboard.service.abstracts.UserService;
@@ -19,30 +19,26 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
-    private final CreateUserRequestDto createUserRequestDto;
+    private final UserCreateRequestDto createUserRequestDto;
 
     @Override
-    public CreateUserResponseDto register(CreateUserRequestDto createUserDto) {
+    public UserCreateResponseDto register(UserCreateRequestDto createUserDto) {
         User control = userRepository.findByUsername(createUserDto.getUsername());
         if (control == null) {
             control = new User();
             control.setUsername(createUserDto.getUsername());
-            control.setEmail(createUserDto.getEmail());
-            control.setPasswordHash(createUserDto.getPasswordHash());
-            control.setLevel(createUserDto.getLevel());
+            control.setPassword(createUserDto.getPassword());
             control.setRole(createUserDto.getRole());
-            control.setDisplayName(createUserDto.getDisplayName());
-            control.setTotalPoints(createUserDto.getTotalPoints());
             userRepository.save(control);
         }
         else{
             throw new RuntimeException("Username already exists");
         }
-        return  new CreateUserResponseDto(control.getUsername() + " created successfully");
+        return  new UserCreateResponseDto(control.getUsername() + " created successfully");
     }
 
     @Override
-    public LoginUserResponseDto login(LoginUserRequestDto loginUserDto) {
+    public UserLoginResponseDto login(UserLoginRequestDto loginUserDto) {
         //bu şifrede bu usernamede biri var mı kontrol et varsa  login ol.
         return null;
     }
@@ -59,7 +55,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public TaskStatusResponseDto getTaskStatusId(Long id) {
+    public TaskCreateResponseDto getTaskStatusId(Long id) {
         return null;
     }
 
