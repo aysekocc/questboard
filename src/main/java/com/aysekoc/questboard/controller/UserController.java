@@ -31,12 +31,6 @@ public class UserController {
         return "User Login Successful!";
     }
 
-    @GetMapping("/{id}/quests")
-    public TaskCreateRequestDto listquests(@PathVariable Long id){
-       userService.getTaskStatusId(id);
-       return null;
-
-    }
 
     @GetMapping("/listAll")
     public List<User> listAll(){
@@ -45,7 +39,15 @@ public class UserController {
 
     @GetMapping("/list/username")
     public UserLoginResponseDto listUsername(@RequestParam UserLoginRequestDto username){
+
         return null;
+    }
+
+    @GetMapping("/{id}/tasks")
+    public TaskCreateRequestDto listtasks(@PathVariable Long id){
+       userService.getTaskStatusId(id);
+       return null;
+
     }
 
     @DeleteMapping("/delete")

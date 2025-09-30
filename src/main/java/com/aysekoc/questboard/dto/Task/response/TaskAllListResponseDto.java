@@ -2,10 +2,7 @@ package com.aysekoc.questboard.dto.Task.response;
 
 import com.aysekoc.questboard.entity.Category;
 import com.aysekoc.questboard.entity.TaskStatus;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
@@ -15,6 +12,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @AllArgsConstructor
+@NoArgsConstructor
 public class TaskAllListResponseDto {
     private String title;
     private String description;

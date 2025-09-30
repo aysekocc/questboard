@@ -1,5 +1,6 @@
 package com.aysekoc.questboard.entity;
 
+import com.aysekoc.questboard.dto.Task.request.TaskCreateRequestDto;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -45,4 +46,5 @@ public class Task {
 
     @ManyToMany(mappedBy = "userTask", fetch =  FetchType.LAZY)
     private Set<User> users = new HashSet<>();
+
 }

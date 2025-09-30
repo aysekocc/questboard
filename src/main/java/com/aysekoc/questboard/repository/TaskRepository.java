@@ -1,5 +1,6 @@
 package com.aysekoc.questboard.repository;
 
+import com.aysekoc.questboard.dto.Task.request.TaskCreateRequestDto;
 import com.aysekoc.questboard.dto.Task.response.TaskAllListResponseDto;
 import com.aysekoc.questboard.dto.Task.response.TaskStatusListResponseDto;
 import com.aysekoc.questboard.dto.Task.response.TaskTitleListResponseDto;
@@ -11,6 +12,6 @@ import java.util.List;
 
 @Repository
 public interface TaskRepository extends JpaRepository<Task, Long> {
-    public List<TaskTitleListResponseDto> findAllTitle();
-    public List<TaskStatusListResponseDto> findAllStatus();
+    List<Task> findAllTitle();
+    List<Task> findAllStatus();
 }
