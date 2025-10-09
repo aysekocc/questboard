@@ -1,4 +1,4 @@
-package com.aysekoc.hospitalappointmantsystem.config;
+package com.aysekoc.questboard.config;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;

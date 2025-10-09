@@ -1,13 +1,11 @@
 package com.aysekoc.questboard.controller;
 
-
 import com.aysekoc.questboard.dto.Task.request.TaskCreateRequestDto;
 import com.aysekoc.questboard.dto.Task.request.TaskUpdateRequestDto;
 import com.aysekoc.questboard.dto.Task.response.TaskAllListResponseDto;
 import com.aysekoc.questboard.dto.Task.response.TaskCreateResponseDto;
 import com.aysekoc.questboard.dto.Task.response.TaskStatusListResponseDto;
 import com.aysekoc.questboard.dto.Task.response.TaskTitleListResponseDto;
-import com.aysekoc.questboard.entity.User;
 import com.aysekoc.questboard.service.abstracts.TaskService;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,7 +15,7 @@ import java.util.List;
 @RequestMapping("/api/tasks")
 public class TaskController {
 
-    private TaskService taskService;
+    private final TaskService taskService;
 
     @PostMapping("/add")
     public TaskCreateResponseDto add(@RequestBody TaskCreateRequestDto taskCreateRequestDto) {

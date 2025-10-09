@@ -1,6 +1,5 @@
 package com.aysekoc.questboard.entity;
 
-import com.aysekoc.questboard.dto.Task.request.TaskCreateRequestDto;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -23,7 +22,7 @@ public class Task {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name="title", nullable = false, unique = true)
+    @Column(name="title", nullable = false)
     private String title;
 
     @Column(name="description", columnDefinition = "TEXT")

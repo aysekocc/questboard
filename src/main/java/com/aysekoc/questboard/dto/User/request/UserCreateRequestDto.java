@@ -1,9 +1,10 @@
 package com.aysekoc.questboard.dto.User.request;
 
 
-import com.aysekoc.questboard.entity.Role;
 import lombok.*;
 import org.springframework.stereotype.Component;
+
+import javax.management.relation.Role;
 
 @Data
 @Component

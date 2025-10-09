@@ -1,7 +1,7 @@
 package com.aysekoc.questboard.dto.Task.request;
 
-import com.aysekoc.questboard.entity.Category;
 import com.aysekoc.questboard.entity.TaskStatus;
+import jdk.jfr.Category;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;

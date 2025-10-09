@@ -1,7 +1,7 @@
 package com.aysekoc.questboard.dto.Task.response;
 
-import com.aysekoc.questboard.entity.Category;
 import com.aysekoc.questboard.entity.TaskStatus;
+import jdk.jfr.Category;
 import lombok.*;
 
 import java.time.LocalDateTime;
